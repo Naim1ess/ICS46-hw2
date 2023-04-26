@@ -1,8 +1,8 @@
 #include <string>
 using namespace std;
 
-constexpr int NWORDS = 45;
-// constexpr int NWORDS = 45392;
+
+constexpr int NWORDS = 45392;
 
 struct SortedList
 {
@@ -128,16 +128,24 @@ public:
         using pointer = value_type*;
         using reference = value_type&;
         using difference_type = std::ptrdiff_t;
-        explicit iterator(ListNode * const ptr = nullptr);
-        iterator & operator ++ ();
-        iterator operator ++ (int);
-        reference operator *() const;
-        pointer operator->() const;
-        bool operator == (iterator const & other) const;
-        bool operator != (iterator const & other) const;
+        explicit iterator(ListNode * const ptr = nullptr) :current{ptr} {
+        }
+        iterator & operator ++ () {
+            current = current->next;
+            return *this;
+        }
+        iterator operator ++ (int) {
+            iterator copy(current);
+            current = current->next;
+            return copy;
+        }
+        reference operator *() const {return current->data;}
+        pointer operator->() const {return &current->data;}
+        bool operator == (iterator const & other) const {return current == other.current;}
+        bool operator != (iterator const & other) const {return current != other.current;}
     };
-    iterator begin();
-    iterator end();
+    iterator begin() {return iterator(head);}
+    iterator end() {return iterator(NULL);}
 
     SortedLinkedList();
     void insert(const string & word);
