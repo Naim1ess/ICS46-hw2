@@ -10,24 +10,13 @@ void ArrayStack::push(const string & word) {
     if (is_full()) {
         return;
     }
-    for (int i = size; i>0; --i) {
-        buf[i]=buf[i-1];
-    }
-    buf[0]=word;
-    size++;
+    buf[size++]=word;
 }
 void ArrayStack::pop() {
-    if (is_empty()) {
-        return;
-    }
-    for (int i = 0; i<size-1; i++) {
-        buf[i]=buf[i+1];
-    }
-    buf[size-1] = "\0";
     size--;
 }
 string ArrayStack::top() {
-    return buf[0];
+    return buf[size -1];
 }
 bool ArrayStack::is_empty() {
     return size==0;
@@ -36,9 +25,9 @@ bool ArrayStack::is_full() {
     return size==capacity;
 }
 void ArrayStack::print(ostream & out) {
-    for (int i=0; i < size; i++) {
-        out << buf[i] << " ";
-    }
+    for (int i = size - 1; i >= 0; i--) {
+            out << buf[i] << ' ';
+        }
 }
 ArrayStack::~ArrayStack() {
     delete[] buf;
