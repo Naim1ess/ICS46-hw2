@@ -120,10 +120,10 @@ string ArrayQueue::next() {
     return buf[front];
 }
 bool ArrayQueue::is_empty() {
-    return front > (rear + 1) % capacity;
+    return front == (rear + 1) % capacity;
 }
 bool ArrayQueue::is_full() {
-    return front == (rear + 1) % capacity;
+    return front == (rear + 2) % capacity;
 }
 void ArrayQueue::print(ostream & out) {
     for (int i = front; i != (rear + 1) % capacity; i = (i + 1) % capacity) {
