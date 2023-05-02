@@ -48,7 +48,7 @@ void ListNode::delete_list(ListNode * L) {
 }
 
 
-LinkedStack::LinkedStack() : Stack("LinkedStack") {}
+LinkedStack::LinkedStack() : Stack("LinkedStack"), head(nullptr) {}
 void LinkedStack::push(const string & word) {
     /*ListNode *newNode = new ListNode(word, nullptr);
     if (head==nullptr) {
@@ -129,7 +129,7 @@ ArrayQueue::~ArrayQueue() {
 }
 
 
-LinkedQueue::LinkedQueue() : Queue("LinkedQueue") {}
+LinkedQueue::LinkedQueue() : Queue("LinkedQueue"), head(nullptr) {}
 void LinkedQueue::enq(const string & word) {
     ListNode *newNode = new ListNode(word, nullptr);
     if (head == nullptr) {
