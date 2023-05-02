@@ -120,7 +120,7 @@ string ArrayQueue::next() {
     return buf[front];
 }
 bool ArrayQueue::is_empty() {
-    return front == (rear + 1) % capacity;
+    return front > (rear + 1) % capacity;
 }
 bool ArrayQueue::is_full() {
     return front == (rear + 1) % capacity;
@@ -161,7 +161,7 @@ bool LinkedQueue::is_full() {
 void LinkedQueue::print(ostream & out) {
     ListNode *L = head;
     while (L != nullptr) {
-        out << L->data << endl;
+        out << L->data << " ";
         L = L->next;
 }
 }
