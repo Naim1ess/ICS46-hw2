@@ -107,8 +107,8 @@ void ArrayQueue::enq(const string & word) {
     if (is_full()) {
         return;
     }
-    buf[rear] = word;
     rear = (rear + 1) % capacity;
+    buf[rear] = word;
 }
 void ArrayQueue::deq() {
     if (is_empty()) {
