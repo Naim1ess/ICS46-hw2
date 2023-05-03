@@ -120,7 +120,7 @@ string ArrayQueue::next() {
     return buf[front];
 }
 bool ArrayQueue::is_empty() {
-    return front == (rear - 1) % capacity;
+    return front == rear;
 }
 bool ArrayQueue::is_full() {
     return front == (rear + 1) % capacity;
