@@ -104,16 +104,10 @@ ArrayQueue::ArrayQueue(int cap) :Queue("ArrayQueue"), capacity(cap+1), front(0),
     buf = new string[capacity];
 }
 void ArrayQueue::enq(const string & word) {
-    if (is_full()) {
-        return;
-    }
     buf[rear] = word;
     rear = (rear + 1) % capacity;
 }
 void ArrayQueue::deq() {
-    if (is_empty()) {
-        return;
-    }
     front = (front + 1) % capacity;
 }
 string ArrayQueue::next() {
