@@ -120,7 +120,7 @@ bool ArrayQueue::is_full() {
     return front == (rear + 1) % capacity;
 }
 void ArrayQueue::print(ostream & out) {
-    for (int i = front; i != (rear + 1) % capacity; i = (i + 1) % capacity) {
+    for (int i = front; i != rear  % capacity; i = (i + 1) % capacity) {
         out << buf[i] << " ";
     }
 }
