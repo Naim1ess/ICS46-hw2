@@ -100,30 +100,30 @@ LinkedStack::~LinkedStack() {
     }
 }
 
-ArrayQueue::ArrayQueue(int cap) :Queue("ArrayQueue"), capacity(cap), front(0), rear(-1) {
-    buf = new string[capacity-1];
+ArrayQueue::ArrayQueue(int cap) :Queue("ArrayQueue"), capacity(cap+1), front(0), rear(0) {
+    buf = new string[capacity];
 }
 void ArrayQueue::enq(const string & word) {
-    /*if (is_full()) {
+    if (is_full()) {
         return;
-    }*/
-    rear = (rear + 1) % capacity;
+    }
     buf[rear] = word;
+    rear = (rear + 1) % capacity;
 }
 void ArrayQueue::deq() {
-    /*if (is_empty()) {
+    if (is_empty()) {
         return;
-    }*/
+    }
     front = (front + 1) % capacity;
 }
 string ArrayQueue::next() {
     return buf[front];
 }
 bool ArrayQueue::is_empty() {
-    return front == (rear + 1) % capacity;
+    return front == (rear - 1) % capacity;
 }
 bool ArrayQueue::is_full() {
-    return front == (rear + 2) % capacity;
+    return front == (rear + 1) % capacity;
 }
 void ArrayQueue::print(ostream & out) {
     for (int i = front; i != (rear + 1) % capacity; i = (i + 1) % capacity) {
