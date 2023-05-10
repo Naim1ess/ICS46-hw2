@@ -120,14 +120,12 @@ size_t HashTable::number_of_entries() {
 
 size_t HashTable::number_of_chains() {
   size_t count = 0;
-  size_t count2 = 0;
   for (size_t i = 0; i < capacity; i++) {
     if (buf[i] != nullptr) {
       count++;
-      count2++;
     }
   }
-  return count2;
+  return capacity;
 }
 
 void HashTable::get_chain_lengths(std::vector<int>& v) {
