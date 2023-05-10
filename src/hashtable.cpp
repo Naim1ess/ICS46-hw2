@@ -21,7 +21,7 @@ ListNode* ListNode::insert(std::string key, ListNode* L) {
 
 ListNode* ListNode::remove(std::string key, ListNode* L) {
     if (L == nullptr) {
-        return;
+        return L;
     }
     ListNode * prev = nullptr;
     for (ListNode *p=L; p!=nullptr; p=p->next) {
@@ -31,8 +31,9 @@ ListNode* ListNode::remove(std::string key, ListNode* L) {
             } else {
                 prev->next = p->next;
             }
+            ListNode *newNode = p;
             delete p;
-            return;
+            return newNode;
         }
         prev = p;
     }
