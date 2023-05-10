@@ -36,6 +36,7 @@ ListNode* ListNode::remove(std::string key, ListNode* L) {
         }
         prev = p;
     }
+    return nullptr;
 }
 
 void ListNode::print(std::ostream& out, ListNode* L) {
