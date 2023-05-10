@@ -21,22 +21,15 @@ ListNode* ListNode::insert(std::string key, ListNode* L) {
 
 ListNode* ListNode::remove(std::string key, ListNode* L) {
     if (L == nullptr) {
-        return L;
+        return nullptr;
     }
-    ListNode * prev = nullptr;
-    for (ListNode *p=L; p!=nullptr; p=p->next) {
-        if (p->data == key) {
-            if (prev == nullptr) {
-                L = p->next;
-            } else {
-                prev->next = p->next;
-            }
-            ListNode *newNode = p;
-            return newNode;
-        }
-        prev = p;
+    if (L->data == key) {
+        ListNode* temp = L->next;
+        delete L;
+        return temp;
     }
-    return nullptr;
+    L->next = remove(key, L->next);
+    return L;
 }
 
 void ListNode::print(std::ostream& out, ListNode* L) {
@@ -81,7 +74,7 @@ bool HashTable::find(const std::string& word) {
 
 void HashTable::remove(const std::string& word) {
   size_t index = hasher.hash(word, capacity);
-  ListNode::remove(word, buf[index]);
+  buf[index] = ListNode::remove(word, buf[index]);
 }
 
 bool HashTable::is_empty() {
