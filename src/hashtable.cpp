@@ -25,7 +25,7 @@ ListNode* ListNode::remove(std::string key, ListNode* L) {
     }
     ListNode * prev = nullptr;
     for (ListNode *p=L; p!=nullptr; p=p->next) {
-        if (p->data == word) {
+        if (p->data == key) {
             if (prev == nullptr) {
                 L = p->next;
             } else {
