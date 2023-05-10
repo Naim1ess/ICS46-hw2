@@ -241,4 +241,20 @@ struct ChatGPTHasher
         return hash_val;
     }
 };
+
+struct MyHasher : public Hasher
+{
+    MyHasher(const char* nm) : Hasher(nm) {}
+
+    size_t hash(string key, int N) const override
+    {
+        size_t result = 0;
+        for (char c : key)
+        {
+            result += c;
+        }
+        return result % N;
+    }
+};
+
 #endif
