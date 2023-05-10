@@ -30,8 +30,7 @@ Stats::Stats(string name, const vector<int> & cl) : name(name), chain_lengths(ch
     load_factor = double(entries)/chains;
     mean = compute_mean(chain_lengths);
     stddev = compute_stddev(chain_lengths);
-    for (int len : chain_lengths) {
-        histogram[len]++;
+    for (int i=0; i<chain_lengths.size(); i++) {
+        histogram[chain_lengths[i]]++;
     }
-    span = max-min;
 }
