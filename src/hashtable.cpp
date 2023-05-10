@@ -90,9 +90,8 @@ bool HashTable::is_full() {
 
 void HashTable::print(std::ostream& out) {
   for (size_t i = 0; i < capacity; ++i) {
-    out << i << ": ";
+    out << i << " ";
     ListNode::print(out, buf[i]);
-    out << std::endl;
   }
 }
 
