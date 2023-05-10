@@ -34,4 +34,7 @@ Stats::Stats(string name, const vector<int> & chain_lengths) {
     load_factor = entries/chains;
     mean = compute_mean(chain_lengths);
     stddev = compute_stddev(chain_lengths);
+    for (int len : chain_lengths) {
+        histogram[len]++;
+    }
 }
