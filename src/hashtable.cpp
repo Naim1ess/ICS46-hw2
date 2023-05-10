@@ -120,9 +120,9 @@ size_t HashTable::number_of_entries() {
 
 size_t HashTable::number_of_chains() {
   size_t count = 0;
-  for (size_t i = 0; i < capacity; ++i) {
+  for (size_t i = 0; i < capacity; i++) {
     if (buf[i] != nullptr) {
-      ++count;
+      count++;
     }
   }
   return count;
