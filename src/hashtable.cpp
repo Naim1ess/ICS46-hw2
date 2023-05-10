@@ -20,14 +20,22 @@ ListNode* ListNode::insert(std::string key, ListNode* L) {
 }
 
 ListNode* ListNode::remove(std::string key, ListNode* L) {
-
-    while (L != nullptr) {
-        if (L->data == key) {
-            return L;
-        }
-        L = L->next;
+    if (L == nullptr) {
+        return;
     }
-    return nullptr;
+    ListNode * prev = nullptr;
+    for (ListNode *p=L; p!=nullptr; p=p->next) {
+        if (p->data == word) {
+            if (prev == nullptr) {
+                L = p->next;
+            } else {
+                prev->next = p->next;
+            }
+            delete p;
+            return;
+        }
+        prev = p;
+    }
 }
 
 void ListNode::print(std::ostream& out, ListNode* L) {
