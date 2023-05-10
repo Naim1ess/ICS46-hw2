@@ -27,7 +27,9 @@ Stats::Stats(string name, const vector<int> & chain_lengths) {
     min = *min_element(chain_lengths.begin(), chain_lengths.end());
     max = *max_element(chain_lengths.begin(), chain_lengths.end());
     span = max-min;
-    entries = accumulate(chain_lengths.begin(), chain_lengths.end(), 0);
+    for (int i=0; i<chain_lengths.size(); i++) {
+        entries += chain_lengths[i];
+    }
     chains = chain_lengths.size();
     load_factor = entries/chains;
     mean = compute_mean(chain_lengths);
