@@ -22,9 +22,9 @@ double compute_stddev(const std::vector<int> &v) {
     return sqrt(sum_squares/len);
 }
 
-Stats::Stats(string name, const vector<int> & chain_lengths) {
+Stats::Stats(string name, const vector<int> & cl) {
     name = name;
-    chain_lengths = chain_lengths;
+    chain_lengths = cl;
     min = *min_element(chain_lengths.begin(), chain_lengths.end());
     max = *max_element(chain_lengths.begin(), chain_lengths.end());
     for (int i=0; i<chain_lengths.size(); i++) {
