@@ -244,7 +244,10 @@ struct ChatGPTHasher
 
 struct MyHasher : public Hasher
 {
-    MyHasher(const char* nm) : Hasher(nm) {}
+    MyHasher()
+        : Hasher("MyHasher")
+    {
+    }
 
     size_t hash(string key, int N) const override
     {
