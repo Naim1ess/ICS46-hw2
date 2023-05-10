@@ -81,7 +81,7 @@ bool HashTable::find(const std::string& word) {
 
 void HashTable::remove(const std::string& word) {
   size_t index = hasher.hash(word, capacity);
-  buf[index] = ListNode::remove(word, buf[index]);
+  ListNode::remove(word, buf[index]);
 }
 
 bool HashTable::is_empty() {
