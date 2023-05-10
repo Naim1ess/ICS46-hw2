@@ -32,7 +32,6 @@ ListNode* ListNode::remove(std::string key, ListNode* L) {
                 prev->next = p->next;
             }
             ListNode *newNode = p;
-            delete p;
             return newNode;
         }
         prev = p;
