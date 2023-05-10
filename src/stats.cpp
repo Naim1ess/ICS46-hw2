@@ -22,6 +22,12 @@ double compute_stddev(const std::vector<int> &v) {
 
 Stats::Stats(string name, const vector<int> & chain_lengths) {
     name = name;
+    min = *min_element(chain_lengths.begin(), chain_lengths.end());
+    max = *max_element(chain_lengths.begin(), chain_lengths.end());
+    span = max-min;
+    entries = accumulate(chain_lengths.begin(), chain_lengths.end(), 0);
+    chains = chain_lengths.size();
+    load_factor = entries/chains;
     mean = compute_mean(chain_lengths);
     stddev = compute_stddev(chain_lengths);
 }
