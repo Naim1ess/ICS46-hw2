@@ -25,12 +25,12 @@ double compute_stddev(const std::vector<int> &v) {
 Stats::Stats(string name, const vector<int> & cl) : name(name), chain_lengths(chain_lengths) {
     min = *min_element(chain_lengths.begin(), chain_lengths.end());
     max = *max_element(chain_lengths.begin(), chain_lengths.end());
-    for (int i=0; i<chain_lengths.size(); i++) {
-        entries += chain_lengths[i];
-        histogram[len]++;
-    }
+    chains = count_if(chain_lengths.begin(), chain_lengths.end(),[](int n) { return n > 0; });
     chains = chain_lengths.size();
     load_factor = double(entries)/chains;
     mean = compute_mean(chain_lengths);
     stddev = compute_stddev(chain_lengths);
+    for (int len : chain_lengths) {
+        histogram[len]++;
+    }
 }
