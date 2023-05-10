@@ -1,5 +1,7 @@
 #include "stats.h"
 #include <cmath>
+#include <vector>
+#include <numeric>
 using namespace std;
 
 double compute_mean(const std::vector<int> &v) {
