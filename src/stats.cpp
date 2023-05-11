@@ -35,4 +35,5 @@ Stats::Stats(string name, const vector<int> & chain_lengths) : name(name), chain
     for (int len : chain_lengths) {
     histogram[len]++;
     }
+    span = max - min;
 }
