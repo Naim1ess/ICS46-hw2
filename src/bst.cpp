@@ -86,7 +86,6 @@ void measure_BST(string file_name, BST & L) {
     }
 }
 void measure_BSTs(string input_file) {
-    int maxlen = 45392;
     AVLTree AVL = AVLTree();
     measure_BST(input_file, AVL);
     BSTree BST = BSTree();
