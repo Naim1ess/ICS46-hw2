@@ -142,7 +142,6 @@ return find_node(root, key) != nullptr;
 
 void AVLTree::remove(const string & key) {
 root = delete_node(root, key);
-if (root != nullptr)
 count--;
 }
 
