@@ -1,5 +1,6 @@
 #ifndef BST_H
 #define BST_H
+#include <stack>
 
 #include <iostream>
 using namespace std;
@@ -45,17 +46,79 @@ struct BST
 
     void print(ostream & out) const
     {
-        // pre_order_print(out, root);
+        pre_order_print(out, root);
         in_order_print(out, root);
-        // post_order_print(out, root);
+        post_order_print(out, root);
     }
 
     virtual ~BST(); // must delete any Nodes in the tree pointed to by root
     BST(const BST & L) = delete;
     BST& operator =(const BST & L) = delete;
+
+    class iterator {
+    stack<Node*> stk;
+    void push_left(Node* node) {
+        while (node) {
+            stk.push(node);
+            node = node->left;
+        }
+    }
+
+public:
+    using iterator_category = std::forward_iterator_tag;
+    using value_type = string;
+    using pointer = value_type*;
+    using reference = value_type&;
+    using difference_type = std::ptrdiff_t;
+
+    explicit iterator(Node * const ptr = nullptr) {
+        push_left(ptr);
+    }
+
+    iterator & operator ++ () {
+        Node* node = stk.top();
+        stk.pop();
+        push_left(node->right);
+        return *this;
+    }
+
+    iterator operator ++ (int) {
+        iterator tmp(*this);
+        operator++();
+        return tmp;
+    }
+
+    reference operator * () const {
+        return stk.top()->key;
+    }
+
+    pointer operator -> () const {
+        return &stk.top()->key;
+    }
+
+    bool operator == (const iterator & other) const {
+        return stk == other.stk;
+    }
+
+    bool operator != (const iterator & other) const {
+        return stk != other.stk;
+    }
+    };
+
+    BST::iterator begin() {
+        return iterator(root);
+    }
+
+    BST::iterator end() {
+        return iterator();
+    }
 };
 
-ostream & operator << (ostream & out, BST & L);
+
+ostream & operator << (ostream & out, BST & L) {
+    L.print(out);
+    return out;
+}
 
 void error(string word, string msg);
 void insert_all_words(int k, string file_name, BST & L);
