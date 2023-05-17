@@ -116,10 +116,7 @@ public:
 };
 
 
-ostream & operator << (ostream & out, BST & L) {
-    L.print(out);
-    return out;
-}
+ostream & operator << (ostream & out, BST & L);
 
 void error(string word, string msg);
 void insert_all_words(int k, string file_name, BST & L);
