@@ -52,6 +52,7 @@ struct BST
     }
 
     virtual ~BST(); // must delete any Nodes in the tree pointed to by root
+    void clear(Node* node);
     BST(const BST & L) = delete;
     BST& operator =(const BST & L) = delete;
 
