@@ -91,3 +91,16 @@ void measure_BSTs(string input_file) {
     BSTree BST = BSTree();
     measure_BST(input_file, BST);
 }
+
+BST::~BST() {
+    clear(root);
+    root = nullptr;
+}
+
+void BST::clear(Node* node) {
+    if (node != nullptr) {
+        clear(node->left);
+        clear(node->right);
+        delete node;
+    }
+}
