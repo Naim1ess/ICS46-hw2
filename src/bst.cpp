@@ -104,3 +104,8 @@ void BST::clear(Node* node) {
         delete node;
     }
 }
+
+ostream & operator << (ostream & out, BST & L) {
+    L.print(out);
+    return out;
+}
