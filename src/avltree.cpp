@@ -68,7 +68,7 @@ Node * AVLTree::insert_node(Node * t, string key) {
         t->left = insert_node(t->left, key);
     } else if (key > t->key) {
         t->right = insert_node(t->right, key);
-    } else {  // equal keys are not allowed in BST
+    } else {
         return t;
     }
  
@@ -86,7 +86,6 @@ Node * AVLTree::find_node(Node * t, string key) {
 }
 
 Node * AVLTree::delete_node(Node * t, string key) {
-    // BST deletion
     if (t == nullptr)
         return t;
  
@@ -97,31 +96,21 @@ Node * AVLTree::delete_node(Node * t, string key) {
     else {
         if( (t->left == nullptr) || (t->right == nullptr) ) {
             Node *temp = t->left ? t->left : t->right;
- 
-            // No child case
             if(temp == nullptr) {
                 temp = t;
                 t = nullptr;
-            } else { // One child case
+            } else { 
                 *t = *temp;
             }
             delete temp;
         } else {
-            // node with two children: get the inorder
-            // successor (smallest in the right subtree)
             Node* temp = t->right;
             while (temp->left != nullptr)
                 temp = temp->left;
-
-            // copy the inorder successor's data to this node
             t->key = temp->key;
-
-            // delete the inorder successor
             t->right = delete_node(t->right, temp->key);
         }
     }
- 
-    // if the tree had only one node then return
     if (t == nullptr)
         return t;
 
